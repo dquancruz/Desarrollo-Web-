@@ -13,3 +13,7 @@ obj/
 # System
 .DS_Store
 Thumbs.db
+
+# Local app config with credentials
+exams/Examen_Hotel/Examen_Hotel/appsettings.json
+*.csproj.user

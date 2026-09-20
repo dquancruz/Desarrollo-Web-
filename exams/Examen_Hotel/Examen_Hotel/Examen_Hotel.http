@@ -1,0 +1,43 @@
+@Examen_Hotel_HostAddress = http://localhost:5270
+
+GET {{Examen_Hotel_HostAddress}}/Api/Reserva/ObtenerTodos
+Accept: application/json
+
+###
+
+GET {{Examen_Hotel_HostAddress}}/Api/Reserva/1
+Accept: application/json
+
+###
+
+POST {{Examen_Hotel_HostAddress}}/Api/Reserva/Ingresar
+Content-Type: application/json
+
+{
+  "nombreCliente": "Juan Pérez",
+  "idHabitacion": 1,
+  "fechaEntrada": "2026-10-01",
+  "fechaSalida": "2026-10-04",
+  "cantidadPersonas": 2,
+  "usuario": "dquan"
+}
+
+###
+
+PUT {{Examen_Hotel_HostAddress}}/Api/Reserva/1
+Content-Type: application/json
+
+{
+  "nombreCliente": "Juan Pérez",
+  "fechaEntrada": "2026-10-01",
+  "fechaSalida": "2026-10-05",
+  "cantidadPersonas": 3,
+  "estado": "CONFIRMADA",
+  "usuario": "dquan"
+}
+
+###
+
+DELETE {{Examen_Hotel_HostAddress}}/Api/Reserva/1
+
+###
