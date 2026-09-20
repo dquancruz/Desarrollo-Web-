@@ -1,4 +1,56 @@
-# Enunciado del Proyecto
+# 🌍 Countries of the World
+
+Country explorer built with React that consumes the [REST Countries](https://restcountries.com/) API. The home page lists countries with their flag, name, and region, and lets you search by name and filter by region; each country has a detail page.
+
+**Stack:** React 19 · TypeScript · Vite · React Router 7 · CSS Modules
+
+---
+
+## Routes
+
+| Route | Page | Description |
+|-------|------|-------------|
+| `/` | `HomePage` | Country grid with search box, region filter, and light/dark theme toggle |
+| `/country/:cca3` | `DetailPage` | Full country information, including clickable border countries |
+| `*` | `NotFoundPage` | Fallback for unknown routes |
+
+> The assignment also asks for a favorites/statistics route; it is not implemented yet.
+
+## Architecture
+
+```
+src/
+├── api/countries.ts        # REST Countries client (paginated fetch, ApiError)
+├── hooks/                  # useCountries, useCountry, useBorderCountries, useFilteredCountries, useTheme
+├── components/             # Header, SearchBar, RegionFilter, CountryCard, BorderBadge, LoadingGrid, ErrorMessage
+├── pages/                  # HomePage, DetailPage, NotFoundPage
+├── types/                  # Country and theme types
+└── App.tsx / main.tsx      # Router setup
+```
+
+- Loading (skeleton grid) and error states are handled for every request.
+- The theme defaults to the OS preference and is persisted in `localStorage`.
+
+## Configuration
+
+The API client sends a bearer token, read from an environment variable. Create a `.env.local` file in this folder (it is not committed):
+
+```bash
+VITE_API_TOKEN=<your REST Countries API token>
+```
+
+## Running the project
+
+```bash
+npm install
+npm run dev        # Dev server (Vite)
+npm run build      # Type-check + production build → dist/
+npm run lint       # ESLint
+```
+
+---
+
+## Enunciado del Proyecto
 Desarrollo de una Aplicación Web Integrada con API Externa
 Deberá diseñar e implementar una aplicación web funcional utilizando el framework y las
 tecnologías vistas en clase.

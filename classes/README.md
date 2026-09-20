@@ -7,11 +7,14 @@ This folder contains work developed during class sessions, organized by course a
 | [backend/Clase2](./backend/Clase2/) | C# · .NET Core 3.1 | 🦸 SuperHeroes & Villanos API |
 | [backend/Clase_7](./backend/Clase_7/) | C# · .NET Core 3.1 | 👤 Clientes API |
 | [backend/Pre_Examen](./backend/Pre_Examen/) | C# · .NET Core 3.1 | 📦 Inventory management API (Productos) |
+| [front/clase02](./front/clase02/) | Angular 21 · TypeScript | 🧭 Multi-page site scaffold: Home, Productos, Clientes, Contactos with routing |
 | [front/clase2_Front](./front/clase2_Front/) | Angular 21 · TypeScript | 🔤 Frontend basics: variables, functions, objects, arrays |
 | [front/clase_4_front](./front/clase_4_front/) | Angular 21 · TypeScript | 🧩 Components, services, routing, and Angular pipes |
 | [front/clase_6](./front/clase_6/) | Angular 21 · TypeScript | ⚡ Pokémon search app consuming PokeAPI with HttpClient |
 | [front/PreExamenParcialFront](./front/PreExamenParcialFront/) | Angular 21 · TypeScript | 🛒 NexoCommerce — multi-page e-commerce landing with routing |
-| [aplicaciones-mobiles/Backend_Banco](./aplicaciones-mobiles/Backend_Banco/) | C# · .NET 9 · PostgreSQL | 🏦 Banco backend API (Usuarios) for the Mobile Applications course |
+| [aplicaciones-mobiles/Backend_Banco](./aplicaciones-mobiles/Backend_Banco/) | C# · .NET 9 · PostgreSQL · MongoDB | 🏦 Banco backend API: Usuarios, Clientes, and Movimientos |
+| [aplicaciones-mobiles/Backend_Banco_inge](./aplicaciones-mobiles/Backend_Banco_inge/) | C# · .NET 9 · PostgreSQL · MongoDB · RabbitMQ | 🐇 Banco backend variant with payment-request queueing via RabbitMQ |
+| [aplicaciones-mobiles/FBanco](./aplicaciones-mobiles/FBanco/) | Angular 21 · TypeScript | 💻 Front end for the Banco backend (Clientes, Usuarios, Movimientos) |
 
 ---
 
@@ -74,6 +77,19 @@ Inventory management API built as pre-exam practice. Manages products with CRUD 
 ---
 
 ## 🎨 Frontend
+
+### 🧭 Clase 02 – Multi-page Site Scaffold
+
+**Path:** `front/clase02/`
+**Stack:** Angular 21 · TypeScript · Angular SSR (Express) · Vitest
+
+Scaffold of a small multi-page Angular app with a standalone component per page and client-side routing.
+
+**🏗️ Architecture:**
+- `pages/home/`, `pages/productos/`, `pages/clientes/`, `pages/contactos/` — page components
+- `app.routes.ts` — routes `/`, `/productos`, `/clientes`, `/contactos`, with a wildcard redirect to `/`
+
+---
 
 ### 🔤 Clase 2 – Angular Basics
 
@@ -150,39 +166,83 @@ Multi-page e-commerce landing for a fictional platform called **NexoCommerce**. 
 
 ## 📱 Aplicaciones Móviles
 
-### 🏦 Backend Banco – Usuarios API
+### 🏦 Backend Banco – Usuarios, Clientes & Movimientos API
 
 **Path:** `aplicaciones-mobiles/Backend_Banco/`
-**Stack:** C# · .NET 9 · ASP.NET Core Web API · Dapper · PostgreSQL (Npgsql) · Swagger
+**Stack:** C# · .NET 9 · ASP.NET Core Web API · Dapper · PostgreSQL (Npgsql) · MongoDB · Swagger
 
-Backend API built as the server side for a mobile banking app, with full CRUD plus status/password management for users, and client (Cliente) registration.
+Backend API built as the server side for a mobile banking app: full CRUD plus status/password management for users, client (Cliente) management, and registration of account movements.
 
 **🏗️ Architecture:**
-- `Backend_Banco/` — Web API project, `Controllers/UsuarioController`, `Controllers/ClienteController`
-- `Core/` — `Servicios/UsuarioServicio`, `Interfaz/IUsuario`, `Servicios/ClienteServicio`, `Interfaz/ICliente`
-- `Modelo/` — `Modelos/MUsuario`, `Modelos/MCliente`
+- `Backend_Banco/` — Web API project, `Controllers/UsuarioController`, `Controllers/ClienteController`, `Controllers/MovimientoController`
+- `Core/` — `Servicios/` + `Interfaz/` for `Usuario`, `Cliente`, and `Movimiento`
+- `Modelo/` — `Modelos/MUsuario`, `MCliente`, `MMovimiento`, `MMovimientoMongo`
+- `database/schema.sql` — PostgreSQL schema for the `ENTIDAD_BANCARIA` database
 
-**Endpoints — Usuario:**
-
-| Method | Route | Description |
-|--------|-------|-------------|
-| GET | `/api/Usuario/ObtenerTodos` | List all users |
-| GET | `/api/Usuario/{id}` | Get user by ID |
-| GET | `/api/Usuario/usuario/{usuario}` | Get user by login |
-| POST | `/api/Usuario` | Create a user |
-| PUT | `/api/Usuario/{id}` | Update a user |
-| PATCH | `/api/Usuario/{id}/estado` | Toggle a user's status |
-| PATCH | `/api/Usuario/{id}/password` | Change a user's password |
-| DELETE | `/api/Usuario/{id}` | Delete a user |
-
-**Endpoints — Cliente:**
+**Endpoints — Usuario (`/api/Usuario`):**
 
 | Method | Route | Description |
 |--------|-------|-------------|
-| GET | `/Api/Cliente/ObtenerTodos` | List all clients |
-| GET | `/Api/Cliente/{id}` | Get client by ID |
-| POST | `/Api/Cliente/Ingresar` | Register a client |
-| PUT | `/Api/Cliente/{id}` | Update a client |
+| GET | `/ObtenerTodos` | List all users |
+| GET | `/{id}` | Get user by ID |
+| GET | `/usuario/{usuario}` | Get user by login |
+| POST | `/` | Create a user |
+| PUT | `/{id}` | Update a user |
+| PATCH | `/{id}/estado` | Toggle a user's status |
+| PATCH | `/{id}/password` | Change a user's password |
+| DELETE | `/{id}` | Delete a user |
+
+**Endpoints — Cliente (`/Api/Cliente`):**
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| GET | `/ObtenerTodos` | List all clients |
+| GET | `/{id}` | Get client by ID |
+| POST | `/Ingresar` | Register a client |
+| PUT | `/{id}` | Update a client |
+| DELETE | `/{id}` | Delete a client |
+
+**Endpoints — Movimiento (`/Api/Movimiento`):**
+
+| Method | Route | Description |
+|--------|-------|-------------|
+| POST | `/` | Register a movement (tracked in the MongoDB `Movimiento_Proceso` collection) |
+
+> ℹ️ In this version the movement's PostgreSQL `INSERT` is commented out in `MovimientoServicio`, so only the MongoDB process record is written.
+
+**Configuration:** connection strings (`DefaultConnection` for PostgreSQL, `MongoDB`) live in `Backend_Banco/appsettings.json`.
+
+---
+
+### 🐇 Backend Banco (inge) – RabbitMQ variant
+
+**Path:** `aplicaciones-mobiles/Backend_Banco_inge/`
+**Stack:** C# · .NET 9 · ASP.NET Core Web API · Dapper · PostgreSQL · MongoDB · RabbitMQ
+
+Extended copy of the Banco backend used for the software-engineering course. Beyond `Usuario` and `Cliente`, it adds:
+
+- **`MovimientoController`** (`/api/Movimiento`) — `GET` all, `GET /{idMovimiento}`, `GET /cuenta/{idCuenta}`, and `POST`.
+- **RabbitMQ publisher** (`Core/Servicios/RabbitMQServicio`) — enqueues payment requests (`IRabbitMQ.EncolarSolicitudPago`) on a topic exchange (`solicitud.exchange`) with queues for the main flow, retry, dead-letter (DLQ), and parking.
+- **Mongo message log** — payment messages are tracked in the `PAGOS` MongoDB database with an `EstadoProceso` field (default `PENDIENTE`).
+- `Modelo/Modelos/SolicitudPagoMensaje` — message envelope (`EventId`, `EventType`, `Version`, `CorrelationId`, `Sequence`, `IdSolicitudPago`).
+
+RabbitMQ connection settings are read from the `RabbitMQ:Host`, `RabbitMQ:Puerto`, `RabbitMQ:Usuario`, and `RabbitMQ:Password` configuration keys.
+
+---
+
+### 💻 FBanco – Angular front end for the Banco API
+
+**Path:** `aplicaciones-mobiles/FBanco/`
+**Stack:** Angular 21 · TypeScript · Angular SSR (Express) · Vitest · HttpClient
+
+Admin-style front end that consumes the Banco backend at `http://localhost:5164/api`.
+
+**🏗️ Architecture:**
+- `pages/inicio/` — home with links to the three sections
+- `pages/clientes/`, `pages/usuarios/`, `pages/movimientos/` — one page per resource
+- `services/cliente.ts`, `usuario.ts`, `movimiento.ts` — `HttpClient` services for each API resource
+- `models/` — `Cliente`, `Usuario`, `Movimiento` interfaces
+- `app.routes.ts` — routes `/`, `/clientes`, `/usuarios`, `/movimientos`, with a wildcard redirect to `/`
 
 ---
 

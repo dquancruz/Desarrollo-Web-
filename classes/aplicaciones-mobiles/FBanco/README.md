@@ -1,59 +1,51 @@
 # FBanco
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.7.
+Angular front end for the **Banco** backend (`../Backend_Banco`). It lets you manage clients, users, and account movements through the backend REST API.
 
-## Development server
+**Stack:** Angular 21 · TypeScript · Angular SSR (Express) · HttpClient · Vitest
 
-To start a local development server, run:
+---
 
-```bash
-ng serve
+## Pages & Routes
+
+| Route | Component | Description |
+|-------|-----------|-------------|
+| `/` | `Inicio` | Home with links to each section |
+| `/clientes` | `Clientes` | Client management |
+| `/usuarios` | `Usuarios` | User management |
+| `/movimientos` | `Movimientos` | Account movements |
+| `**` | redirect → `/` | Wildcard fallback |
+
+## Architecture
+
+```
+src/app/
+├── pages/
+│   ├── inicio/
+│   ├── clientes/
+│   ├── usuarios/
+│   └── movimientos/
+├── services/
+│   ├── cliente.ts        # /api/Cliente  (list, by id, by DPI, create, update, status, delete)
+│   ├── usuario.ts        # /api/Usuario  (list, by id, by login, create, update, status, password, delete)
+│   └── movimiento.ts     # /api/Movimiento (list, by id, by account, create)
+├── models/               # Cliente, Usuario, Movimiento interfaces
+└── app.routes.ts         # Client-side route definitions
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Backend
 
-## Code scaffolding
+The services call the API at `http://localhost:5164/api/...` (hard-coded in each service's `apiUrl`). Start the backend first and adjust the port if yours differs. The API needs PostgreSQL and MongoDB running locally; see [`classes/README.md`](../../README.md) for the backend endpoints.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+> ⚠️ Not every call in the services has a matching endpoint in `Backend_Banco` yet (for example client lookup by DPI, client status toggle, and `GET` for movements exist in the `Backend_Banco_inge` variant). Check the backend you run against.
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Running the project
 
 ```bash
-ng generate --help
+npm install        # Install dependencies
+npm start          # Dev server at http://localhost:4200
+npm run build      # Production build → dist/
+npm test           # Run tests with Vitest
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
