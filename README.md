@@ -15,6 +15,7 @@ The course covers full-stack web development: Back-end with C# / ASP.NET Core, F
 - 📖 API documentation with Swagger
 - 🎨 Front-end development with Angular 21 and TypeScript
 - ⚛️ Front-end development with React 19, Vite, and React Router
+- 📱 Mobile development with React Native (forms, date picker, dropdown)
 - 🧩 Angular template syntax, components, services, routing, and `HttpClient`
 
 ---
@@ -29,7 +30,7 @@ The course covers full-stack web development: Back-end with C# / ASP.NET Core, F
 └── tasks/       # Academic tasks
 ```
 
-Each area has its own README with more detail: [classes](./classes/README.md) · [exams](./exams/README.md).
+Each area has its own README with more detail: [classes](./classes/README.md) · [exams](./exams/README.md) · [projects](./projects/README.md) · [tasks](./tasks/README.md).
 
 ### 📚 Classes
 
@@ -60,6 +61,8 @@ Work developed during class sessions, organized by technology layer.
 | [classes/aplicaciones-mobiles/Backend_Banco](./classes/aplicaciones-mobiles/Backend_Banco/) | C# · .NET 9 · PostgreSQL · MongoDB | 🏦 Banco backend API: Usuarios, Clientes, and Movimientos |
 | [classes/aplicaciones-mobiles/Backend_Banco_inge](./classes/aplicaciones-mobiles/Backend_Banco_inge/) | C# · .NET 9 · PostgreSQL · MongoDB · RabbitMQ | 🐇 Banco backend variant with payment-request queueing via RabbitMQ |
 | [classes/aplicaciones-mobiles/FBanco](./classes/aplicaciones-mobiles/FBanco/) | Angular 21 · TypeScript | 💻 Front end for the Banco backend (Clientes, Usuarios, Movimientos) |
+| [classes/aplicaciones-mobiles/FirstMobileApp](./classes/aplicaciones-mobiles/FirstMobileApp/) | React Native 0.87 · TypeScript | 📱 First mobile app: user form with validation |
+| [classes/aplicaciones-mobiles/FormularioEmpleado](./classes/aplicaciones-mobiles/FormularioEmpleado/) | React Native 0.87 · TypeScript | 🧑‍💼 Employee form with date picker and department dropdown |
 
 ### 📝 Academic Tasks
 
@@ -98,12 +101,14 @@ dotnet run --project <WebApiProject>/<WebApiProject>.csproj
 
 Swagger UI is exposed at `/swagger` in development. Projects that use PostgreSQL or MongoDB need those services running locally; check each project's `appsettings.json` (or its `appsettings.example.json`) for connection strings.
 
-**Frontend projects (Angular / React)**
+**Frontend projects (Angular / React / React Native)**
 
 ```bash
 npm install
 npm start          # Angular: ng serve  (React/Vite: npm run dev)
 npm run build
 ```
+
+React Native apps: `npm start` (Metro) and `npm run android`.
 
 > 🔐 Files that hold local credentials (for example `exams/Examen_Hotel/Examen_Hotel/appsettings.json`) are gitignored. Copy the `appsettings.example.json` template next to it and fill in your own values.

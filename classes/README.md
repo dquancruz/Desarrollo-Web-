@@ -15,6 +15,8 @@ This folder contains work developed during class sessions, organized by course a
 | [aplicaciones-mobiles/Backend_Banco](./aplicaciones-mobiles/Backend_Banco/) | C# · .NET 9 · PostgreSQL · MongoDB | 🏦 Banco backend API: Usuarios, Clientes, and Movimientos |
 | [aplicaciones-mobiles/Backend_Banco_inge](./aplicaciones-mobiles/Backend_Banco_inge/) | C# · .NET 9 · PostgreSQL · MongoDB · RabbitMQ | 🐇 Banco backend variant with payment-request queueing via RabbitMQ |
 | [aplicaciones-mobiles/FBanco](./aplicaciones-mobiles/FBanco/) | Angular 21 · TypeScript | 💻 Front end for the Banco backend (Clientes, Usuarios, Movimientos) |
+| [aplicaciones-mobiles/FirstMobileApp](./aplicaciones-mobiles/FirstMobileApp/) | React Native 0.87 · TypeScript | 📱 First mobile app: user form with validation |
+| [aplicaciones-mobiles/FormularioEmpleado](./aplicaciones-mobiles/FormularioEmpleado/) | React Native 0.87 · TypeScript | 🧑‍💼 Employee form with date picker and department dropdown |
 
 ---
 
@@ -246,6 +248,24 @@ Admin-style front end that consumes the Banco backend at `http://localhost:5164/
 
 ---
 
+### 📱 FirstMobileApp – First React Native app
+
+**Path:** `aplicaciones-mobiles/FirstMobileApp/` · see its [README](./aplicaciones-mobiles/FirstMobileApp/README.md)
+**Stack:** React Native 0.87 · React 19 · TypeScript · Jest
+
+Basic user form (nombre, apellido, teléfono, DPI) that validates empty fields and shows the captured data in an `Alert`.
+
+---
+
+### 🧑‍💼 FormularioEmpleado – Employee registration form
+
+**Path:** `aplicaciones-mobiles/FormularioEmpleado/` · see its [README](./aplicaciones-mobiles/FormularioEmpleado/README.md)
+**Stack:** React Native 0.87 · React 19 · TypeScript · `datetimepicker` · `picker`
+
+Evolution of FirstMobileApp: eight fields (nombre, apellido, correo, teléfono, DPI, dirección, fecha de nacimiento, departamento) with a native date picker and a department dropdown.
+
+---
+
 ## 🖥️ Scripts (Frontend projects)
 
 ```bash
@@ -253,3 +273,5 @@ npm start          # Dev server (ng serve)
 npm run build      # Production build
 npm test           # Run tests with Vitest
 ```
+
+React Native apps (`FirstMobileApp`, `FormularioEmpleado`) use `npm start` (Metro), `npm run android`, and `npm test` (Jest).
