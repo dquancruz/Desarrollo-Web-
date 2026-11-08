@@ -63,6 +63,7 @@ Work developed during class sessions, organized by technology layer.
 | [classes/aplicaciones-mobiles/FBanco](./classes/aplicaciones-mobiles/FBanco/) | Angular 21 · TypeScript | 💻 Front end for the Banco backend (Clientes, Usuarios, Movimientos) |
 | [classes/aplicaciones-mobiles/FirstMobileApp](./classes/aplicaciones-mobiles/FirstMobileApp/) | React Native 0.87 · TypeScript | 📱 First mobile app: user form with validation |
 | [classes/aplicaciones-mobiles/FormularioEmpleado](./classes/aplicaciones-mobiles/FormularioEmpleado/) | React Native 0.87 · TypeScript | 🧑‍💼 Employee form with date picker and department dropdown |
+| [classes/aplicaciones-mobiles/FormularioEstudiante](./classes/aplicaciones-mobiles/FormularioEstudiante/) | React Native 0.87 · TypeScript | 🎓 Student enrollment form with radio, checkboxes and switches |
 
 ### 📝 Academic Tasks
 

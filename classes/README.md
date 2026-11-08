@@ -17,6 +17,7 @@ This folder contains work developed during class sessions, organized by course a
 | [aplicaciones-mobiles/FBanco](./aplicaciones-mobiles/FBanco/) | Angular 21 · TypeScript | 💻 Front end for the Banco backend (Clientes, Usuarios, Movimientos) |
 | [aplicaciones-mobiles/FirstMobileApp](./aplicaciones-mobiles/FirstMobileApp/) | React Native 0.87 · TypeScript | 📱 First mobile app: user form with validation |
 | [aplicaciones-mobiles/FormularioEmpleado](./aplicaciones-mobiles/FormularioEmpleado/) | React Native 0.87 · TypeScript | 🧑‍💼 Employee form with date picker and department dropdown |
+| [aplicaciones-mobiles/FormularioEstudiante](./aplicaciones-mobiles/FormularioEstudiante/) | React Native 0.87 · TypeScript | 🎓 Student enrollment form with radio, checkboxes and switches |
 
 ---
 
@@ -266,6 +267,15 @@ Evolution of FirstMobileApp: eight fields (nombre, apellido, correo, teléfono, 
 
 ---
 
+### 🎓 FormularioEstudiante – Student enrollment form
+
+**Path:** `aplicaciones-mobiles/FormularioEstudiante/` · see its [README](./aplicaciones-mobiles/FormularioEstudiante/README.md)
+**Stack:** React Native 0.87 · React 19 · TypeScript · `datetimepicker` · `picker`
+
+Exam practice form: text fields, date picker, career dropdown, radio buttons (jornada), checkboxes (intereses) and switches (beca, términos), with validation and an `Alert` summary.
+
+---
+
 ## 🖥️ Scripts (Frontend projects)
 
 ```bash
@@ -274,4 +284,4 @@ npm run build      # Production build
 npm test           # Run tests with Vitest
 ```
 
-React Native apps (`FirstMobileApp`, `FormularioEmpleado`) use `npm start` (Metro), `npm run android`, and `npm test` (Jest).
+React Native apps (`FirstMobileApp`, `FormularioEmpleado`, `FormularioEstudiante`) use `npm start` (Metro), `npm run android`, and `npm test` (Jest).
