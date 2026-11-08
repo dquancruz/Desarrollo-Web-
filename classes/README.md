@@ -18,6 +18,7 @@ This folder contains work developed during class sessions, organized by course a
 | [aplicaciones-mobiles/FirstMobileApp](./aplicaciones-mobiles/FirstMobileApp/) | React Native 0.87 · TypeScript | 📱 First mobile app: user form with validation |
 | [aplicaciones-mobiles/FormularioEmpleado](./aplicaciones-mobiles/FormularioEmpleado/) | React Native 0.87 · TypeScript | 🧑‍💼 Employee form with date picker and department dropdown |
 | [aplicaciones-mobiles/FormularioEstudiante](./aplicaciones-mobiles/FormularioEstudiante/) | React Native 0.87 · TypeScript | 🎓 Student enrollment form with radio, checkboxes and switches |
+| [aplicaciones-mobiles/ProyectoMobile](./aplicaciones-mobiles/ProyectoMobile/) | React Native 0.87 · TypeScript | 🌐 API consumer: weather, movies (Ghibli) and books (Open Library) with React Navigation |
 
 ---
 
@@ -276,6 +277,15 @@ Exam practice form: text fields, date picker, career dropdown, radio buttons (jo
 
 ---
 
+### 🌐 ProyectoMobile – Consuming public APIs
+
+**Path:** `aplicaciones-mobiles/ProyectoMobile/` · see its [README](./aplicaciones-mobiles/ProyectoMobile/README.md)
+**Stack:** React Native 0.87 · React 19 · TypeScript · React Navigation · Axios · Jest
+
+Home menu with three screens that consume public APIs (no keys needed): **Clima** ([Open-Meteo](https://open-meteo.com/)), **Películas** ([Studio Ghibli API](https://ghibliapi.vercel.app/), list + detail) and **Libros** ([Open Library](https://openlibrary.org/), search by title or author).
+
+---
+
 ## 🖥️ Scripts (Frontend projects)
 
 ```bash
@@ -284,4 +294,4 @@ npm run build      # Production build
 npm test           # Run tests with Vitest
 ```
 
-React Native apps (`FirstMobileApp`, `FormularioEmpleado`, `FormularioEstudiante`) use `npm start` (Metro), `npm run android`, and `npm test` (Jest).
+React Native apps (`FirstMobileApp`, `FormularioEmpleado`, `FormularioEstudiante`, `ProyectoMobile`) use `npm start` (Metro), `npm run android`, and `npm test` (Jest).
